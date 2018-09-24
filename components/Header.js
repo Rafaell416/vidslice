@@ -1,3 +1,7 @@
+'use strict'
+
+import PropTypes from 'prop-types'
+
 const Header = ({ title }) => (
   <div>
     <header>
@@ -6,17 +10,22 @@ const Header = ({ title }) => (
     <style jsx>
       {`
         header {
-          background: red;
-          padding: 15px;
+          background: transparent;
+          padding: 20px;
           text-align: center;
         }
 
         header span {
-          color: black;
+          color: #5E616F;
+          font-size: 30px;
         }
       `}
     </style>
   </div>
 )
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired
+}
 
 export default Header
