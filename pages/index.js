@@ -1,13 +1,19 @@
 import { Component } from 'react'
 import Layout from '../components/Layout'
 import UploadVideoCard from '../containers/UploadVideoCard'
+import { connect } from 'react-redux'
+import { createObject } from '../redux/actions'
 
-export default class extends Component {
+class Index extends Component {
   render () {
+    const { state, createObject } = this.props 
     return (
       <Layout title="Vidslice">
         <div className="container">
-          <UploadVideoCard />
+          <UploadVideoCard
+            state={state}
+            createObject={createObject}
+          />
         </div>
         <style jsx>
           {`
@@ -26,3 +32,13 @@ export default class extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  state
+})
+
+const mapDispatchToProps = {
+  createObject
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index)
