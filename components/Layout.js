@@ -26,7 +26,7 @@ const Layout = ({ children, title }) => (
 )
 
 Layout.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired
 }
 

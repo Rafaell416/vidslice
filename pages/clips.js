@@ -1,9 +1,23 @@
 import { Component } from 'react'
 import Layout from '../components/Layout'
 import VideoPlayer from '../components/VideoPlayer'
+import InputField from '../components/InputField'
+import ActionButton from '../components/ActionButton'
 
 export default class extends Component {
+  state = {
+    name: ''
+  }
+
+  _handleOnchangeInputValue = (e) => this.setState({ name: e.target.value })
+
+  _checkIfInputIsFilled = () => {
+    if (!this.state.name) return true
+    return false
+  }
+
   render () {
+    const { name } = this.state
     return (
       <Layout title="Clips">
         <div className="container">
@@ -18,13 +32,23 @@ export default class extends Component {
             </div>
             <div className="form-view">
               <div className="name-input-view centered">
-                NAME INPUT
+                <InputField
+                  placeholder="Write a name for your clip"
+                  value={name}
+                  onChange={this._handleOnchangeInputValue}
+                />
               </div>
               <div className="slider-view centered">
                 SLIDER
               </div>
               <div className="button-view centered">
-                BUTTON
+                <ActionButton
+                  text="Create clip"
+                  backgroundColor="#1abc9c"
+                  textColor="white"
+                  onClick={() => console.log('pressed button')}
+                  disabled={this._checkIfInputIsFilled()}
+                />
               </div>
             </div>
           </div>
@@ -60,7 +84,7 @@ export default class extends Component {
             }
 
             .name-input-view {
-              background: #e74c3c
+
             }
 
             .slider-view {
@@ -68,7 +92,7 @@ export default class extends Component {
             }
 
             .button-view {
-              background: #e67e22;
+              
             }
 
             .centered {
