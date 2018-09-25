@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import Layout from '../components/Layout'
+import VideoPlayer from '../components/VideoPlayer'
 
 export default class extends Component {
   render () {
@@ -8,10 +9,12 @@ export default class extends Component {
         <div className="container">
           <div className="section top-section">
             <div className="video-player-view">
-              <video id="video-player" controls muted preload="metadata">
-                <source src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4" type="video/mp4"/>
-                <p>Your browser doesn't support HTML5 video. Here is a <a href="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4">link to the video</a> instead.</p>
-              </video>
+              <VideoPlayer
+                url="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+                muted
+                height="350px"
+                width="100%"
+              />
             </div>
             <div className="form-view">
               <div className="name-input-view centered">
@@ -72,11 +75,6 @@ export default class extends Component {
               display: grid;
               align-items: center;
               justify-content: center;
-            }
-
-            #video-player {
-              height: 350px;
-              width: 100%;
             }
           `}
         </style>
