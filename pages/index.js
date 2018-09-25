@@ -6,7 +6,7 @@ import { createObject } from '../redux/actions'
 
 class Index extends Component {
   render () {
-    const { state, createObject } = this.props 
+    const { state, createObject } = this.props
     return (
       <Layout title="Vidslice">
         <div className="container">
@@ -19,12 +19,9 @@ class Index extends Component {
           {`
             .container {
               background-color: transparent;
-              display: flex;
-              flex: 1;
+              display: grid;
+              align-items: center;
               justify-content: center;
-              position: absolute;
-              height: 100%;
-              width: 100%;
             }
           `}
         </style>

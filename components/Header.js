@@ -11,7 +11,7 @@ const Header = ({ title }) => (
       {`
         header {
           background: transparent;
-          padding: 20px;
+          padding: 15px;
           text-align: center;
         }
 
