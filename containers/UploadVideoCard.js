@@ -15,6 +15,11 @@ export default class UploadVideoCard extends Component {
     return false
   }
 
+  _handleNavigation = () => {
+    Router.push('clips')
+    console.log('executed')
+  }
+
   render () {
     const { url } = this.state
     return (
@@ -29,7 +34,7 @@ export default class UploadVideoCard extends Component {
             text="Next"
             backgroundColor="#1abc9c"
             textColor="white"
-            onClick={() => Router.push('/clips')}
+            onClick={this._handleNavigation}
             disabled={this._checkIfInputIsFilled()}
           />
         </div>

@@ -1,5 +1,5 @@
 {
-  "./noop": [
+  "/Users/Rafaell416/Documents/CODE/WEBS/vidslice/noop": [
     {
       "id": "./node_modules/next/dist/client/noop.js",
       "name": "./node_modules/next/dist/client/noop.js",
@@ -17,7 +17,7 @@
   ],
   "undefined": [
     {
-      "id": 4,
+      "id": 5,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
