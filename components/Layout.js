@@ -10,7 +10,7 @@ const Layout = ({ children, title }) => (
       <title>{title}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <link href="https://fonts.googleapis.com/css?family=Kosugi+Maru" rel="stylesheet" />
-      <link href="../index.css" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     </Head>
     <Header title={title} />
     {children}

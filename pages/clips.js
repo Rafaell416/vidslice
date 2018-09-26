@@ -5,6 +5,7 @@ import InputField from '../components/InputField'
 import ActionButton from '../components/ActionButton'
 import InputRange from 'react-input-range'
 import 'react-input-range/lib/css/index.css'
+import ClipCard from '../components/ClipCard'
 
 
 export default class extends Component {
@@ -64,7 +65,12 @@ export default class extends Component {
             </div>
           </div>
           <div className="section">
-            BOTTOM SECTION
+            <div className="clips-list-view">
+              <ClipCard
+                name="Clip"
+                duration="00:00:45"
+              />
+            </div>
           </div>
         </div>
         <style jsx>
@@ -87,6 +93,7 @@ export default class extends Component {
 
             .video-player-view {
               background: black;
+              margin-left: 10px;
             }
 
             .top-section .form-view {
@@ -106,6 +113,12 @@ export default class extends Component {
 
             .button-view {
 
+            }
+
+            .clips-list-view {
+              padding-top: 20px;
+              padding-left: 10px;
+              padding-right: 10px;
             }
 
             .centered {
