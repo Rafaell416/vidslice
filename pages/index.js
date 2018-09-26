@@ -2,17 +2,15 @@ import { Component } from 'react'
 import Layout from '../components/Layout'
 import UploadVideoCard from '../containers/UploadVideoCard'
 import { connect } from 'react-redux'
-import { addVideoUrl } from '../redux/actions'
+import { addVideoUrl, addClipToClipList } from '../redux/actions'
 
 class Index extends Component {
   render () {
-    const { state, addVideoUrl } = this.props
     return (
       <Layout title="Vidslice">
         <div className="container">
           <UploadVideoCard
-            state={state}
-            addVideoUrl={addVideoUrl}
+            {...this.props}
           />
         </div>
         <style jsx>
@@ -35,7 +33,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  addVideoUrl
+  addVideoUrl,
+  addClipToClipList
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

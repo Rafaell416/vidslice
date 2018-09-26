@@ -2,7 +2,6 @@ import { Component } from 'react'
 import InputField from '../components/InputField'
 import ActionButton from '../components/ActionButton'
 import Router from 'next/router'
-import Link from 'next/link'
 
 export default class UploadVideoCard extends Component {
   state = {
@@ -19,6 +18,7 @@ export default class UploadVideoCard extends Component {
   _handleNavigation = () => {
     const { url } = this.state
     this.props.addVideoUrl(url)
+    this.props.addClipToClipList('Full Video', '00:00:52', '6', '20')
     Router.push('/clips')
   }
 
