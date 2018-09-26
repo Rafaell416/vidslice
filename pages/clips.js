@@ -3,10 +3,16 @@ import Layout from '../components/Layout'
 import VideoPlayer from '../components/VideoPlayer'
 import InputField from '../components/InputField'
 import ActionButton from '../components/ActionButton'
+import InputRange from 'react-input-range'
+import 'react-input-range/lib/css/index.css'
+
 
 export default class extends Component {
   state = {
-    name: ''
+    name: '',
+    value: {
+      min: 2, max: 10
+    }
   }
 
   _handleOnchangeInputValue = (e) => this.setState({ name: e.target.value })
@@ -17,7 +23,7 @@ export default class extends Component {
   }
 
   render () {
-    const { name } = this.state
+    const { name, value } = this.state
     return (
       <Layout title="Clips">
         <div className="container">
@@ -38,8 +44,13 @@ export default class extends Component {
                   onChange={this._handleOnchangeInputValue}
                 />
               </div>
-              <div className="slider-view centered">
-                SLIDER
+              <div className="slider-view">
+                <InputRange
+                  maxValue={20}
+                  minValue={0}
+                  value={value}
+                  onChange={value => this.setState({ value })}
+                />
               </div>
               <div className="button-view centered">
                 <ActionButton
@@ -88,11 +99,13 @@ export default class extends Component {
             }
 
             .slider-view {
-              background: #8e44ad;
+              display: grid;
+              align-items: center;
+              padding: 20px;
             }
 
             .button-view {
-              
+
             }
 
             .centered {
