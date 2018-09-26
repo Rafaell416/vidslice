@@ -1,6 +1,6 @@
 'use strict'
 
-const clip = (state = {hello: 'cosmos'}, action) => {
+const vidslice = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_VIDEO_URL':
       return { ...state, video: { url: action.url } }
@@ -10,4 +10,4 @@ const clip = (state = {hello: 'cosmos'}, action) => {
   }
 }
 
-export default clip
+export default vidslice

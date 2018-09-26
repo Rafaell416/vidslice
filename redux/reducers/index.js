@@ -1,10 +1,10 @@
 'use strict'
 
 import { combineReducers } from 'redux'
-import clip from './clip'
+import vidslice from './vidslice'
 
 const reducer = combineReducers({
-  clip
+  vidslice
 })
 
 export default reducer

@@ -4,7 +4,7 @@ import VideoPlayer from '../components/VideoPlayer'
 import InputField from '../components/InputField'
 import ActionButton from '../components/ActionButton'
 import ClipCard from '../components/ClipCard'
-import RangeSlider from '../components/RangeSlider'
+import InputRange from 'react-input-range'
 
 
 export default class clips extends Component {
@@ -47,7 +47,9 @@ export default class clips extends Component {
                 />
               </div>
               <div className="slider-view">
-                <RangeSlider
+                <InputRange
+                  maxValue={20}
+                  minValue={0}
                   value={value}
                   onChange={this._handleRangeChange}
                 />

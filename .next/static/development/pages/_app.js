@@ -11938,10 +11938,32 @@ function (_App) {
 
 /***/ }),
 
-/***/ "./redux/reducers/clip.js":
-/*!********************************!*\
-  !*** ./redux/reducers/clip.js ***!
-  \********************************/
+/***/ "./redux/reducers/index.js":
+/*!*********************************!*\
+  !*** ./redux/reducers/index.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _vidslice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vidslice */ "./redux/reducers/vidslice.js");
+
+
+
+
+var reducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
+  vidslice: _vidslice__WEBPACK_IMPORTED_MODULE_1__["default"]
+});
+/* harmony default export */ __webpack_exports__["default"] = (reducer);
+
+/***/ }),
+
+/***/ "./redux/reducers/vidslice.js":
+/*!************************************!*\
+  !*** ./redux/reducers/vidslice.js ***!
+  \************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -11953,10 +11975,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var clip = function clip() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    hello: 'cosmos'
-  };
+var vidslice = function vidslice() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
@@ -11973,29 +11993,7 @@ var clip = function clip() {
   }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (clip);
-
-/***/ }),
-
-/***/ "./redux/reducers/index.js":
-/*!*********************************!*\
-  !*** ./redux/reducers/index.js ***!
-  \*********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _clip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./clip */ "./redux/reducers/clip.js");
-
-
-
-
-var reducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  clip: _clip__WEBPACK_IMPORTED_MODULE_1__["default"]
-});
-/* harmony default export */ __webpack_exports__["default"] = (reducer);
+/* harmony default export */ __webpack_exports__["default"] = (vidslice);
 
 /***/ }),
 

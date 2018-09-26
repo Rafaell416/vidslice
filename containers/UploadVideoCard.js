@@ -16,7 +16,11 @@ export default class UploadVideoCard extends Component {
     return false
   }
 
-  _handleNavigation = () => Router.push('/clips')
+  _handleNavigation = () => {
+    const { url } = this.state
+    this.props.addVideoUrl(url)
+    Router.push('/clips')
+  }
 
   render () {
     const { url } = this.state
