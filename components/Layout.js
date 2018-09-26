@@ -3,6 +3,8 @@
 import Header from '../components/Header'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
+import react_input_range_styles from 'react-input-range/lib/css/index.css'
+
 
 const Layout = ({ children, title }) => (
   <div>
@@ -21,6 +23,7 @@ const Layout = ({ children, title }) => (
           background: #F5F9FA;
           font-family: 'Kosugi Maru', sans-serif;
         }
+        ${react_input_range_styles}
       `}
     </style>
   </div>

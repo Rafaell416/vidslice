@@ -54,7 +54,8 @@ ActionButton.propTypes = {
   text: PropTypes.string.isRequired,
   textColor: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  type: PropTypes.string
 }
 
 export default ActionButton

@@ -143,13 +143,13 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 var isServer = typeof window === 'undefined';
 var __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__';
 
-function getOrCreateStore(initialState) {
+function getOrCreateStore() {
   if (isServer) {
-    return Object(_redux_store__WEBPACK_IMPORTED_MODULE_2__["initializeStore"])(initialState);
+    return Object(_redux_store__WEBPACK_IMPORTED_MODULE_2__["initializeStore"])();
   }
 
   if (!window[__NEXT_REDUX_STORE__]) {
-    window[__NEXT_REDUX_STORE__] = Object(_redux_store__WEBPACK_IMPORTED_MODULE_2__["initializeStore"])(initialState);
+    window[__NEXT_REDUX_STORE__] = Object(_redux_store__WEBPACK_IMPORTED_MODULE_2__["initializeStore"])();
   }
 
   return window[__NEXT_REDUX_STORE__];
@@ -339,6 +339,10 @@ function (_App) {
 __webpack_require__.r(__webpack_exports__);
 
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var clip = function clip() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     hello: 'cosmos'
@@ -346,8 +350,12 @@ var clip = function clip() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case 'ACTION_TYPE':
-      return;
+    case 'ADD_VIDEO_URL':
+      return _objectSpread({}, state, {
+        video: {
+          url: action.url
+        }
+      });
       break;
 
     default:
@@ -401,8 +409,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function initializeStore() {
-  var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_1__["default"], initialState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a));
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_1__["default"], Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a));
 }
 
 /***/ }),

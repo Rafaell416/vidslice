@@ -2,6 +2,7 @@ import { Component } from 'react'
 import InputField from '../components/InputField'
 import ActionButton from '../components/ActionButton'
 import Router from 'next/router'
+import Link from 'next/link'
 
 export default class UploadVideoCard extends Component {
   state = {
@@ -15,10 +16,7 @@ export default class UploadVideoCard extends Component {
     return false
   }
 
-  _handleNavigation = () => {
-    Router.push('clips')
-    console.log('executed')
-  }
+  _handleNavigation = () => Router.push('/clips')
 
   render () {
     const { url } = this.state

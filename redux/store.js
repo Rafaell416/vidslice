@@ -3,6 +3,6 @@ import reducer from './reducers'
 import logger from 'redux-logger'
 
 
-export function initializeStore (initialState = {}) {
-  return createStore(reducer, initialState, applyMiddleware(logger))
+export function initializeStore () {
+  return createStore(reducer, applyMiddleware(logger))
 }
