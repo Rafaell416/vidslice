@@ -92,6 +92,16 @@ const vidslice = (state = {
         }
       }
       break
+    case 'RESET_CLIP_LIST_TO_DEFAULT_VALUES':
+      return {
+        video: {
+          url: '',
+          defaultMin: 0,
+          defaultMax: 0,
+          value: { min: 0, max: 0 }
+        },
+        clips: []
+      }
     default:
       return state
   }

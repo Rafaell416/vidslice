@@ -34,3 +34,7 @@ export const updateRangeValues = (value) => ({
   type: 'UPDATE_RANGE_VALUES_WHEN_IS_DRAGGED',
   value
 })
+
+export const resetClipListToDefaultValues = () => ({
+  type: 'RESET_CLIP_LIST_TO_DEFAULT_VALUES'
+})

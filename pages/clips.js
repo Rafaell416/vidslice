@@ -7,6 +7,7 @@ import ClipCard from '../components/ClipCard'
 import InputRange from 'react-input-range'
 import { secondsToFormatedTime } from '../lib'
 import { connect } from 'react-redux'
+import Router from 'next/router'
 import {
   addVideoUrl,
   updateRangeValues,
@@ -14,6 +15,7 @@ import {
   toggleSelectClipCard,
   deleteClipFromClipList,
   updateFullVideoDuration,
+  resetClipListToDefaultValues,
   updateDefaultRangeValuesWhenVideoFinishLoad
 } from '../redux/actions'
 
@@ -73,13 +75,27 @@ class cls extends Component {
 
     const video = document.getElementById('video-player')
     video.load()
+
+  }
+
+  _handleEditClip = (e, id) => {
+    e.stopPropagation()
+
+  }
+
+  _resetClipList = () => {
+    this.props.resetClipListToDefaultValues()
+    Router.push('/')
   }
 
   render () {
     const { name } = this.state
     const { clips, video: { url, defaultMin, defaultMax, value }} = this.props.state.vidslice
     return (
-      <Layout title="Clips">
+      <Layout
+        title="Clips"
+        right={<i className="material-icons" onClick={this._resetClipList}>clear</i>}
+      >
         <div className="container">
           <div className="section top-section">
             <div className="video-player-view">
@@ -127,6 +143,7 @@ class cls extends Component {
                   {...clip}
                   onClick={this._onClickClipCard}
                   deleteClip={this._handleDeleteCLip}
+                  editClip={this._handleEditClip}
                 />
               ))}
             </div>
@@ -201,11 +218,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   addVideoUrl,
+  updateRangeValues,
   addClipToClipList,
   toggleSelectClipCard,
   deleteClipFromClipList,
   updateFullVideoDuration,
-  updateRangeValues,
+  resetClipListToDefaultValues,
   updateDefaultRangeValuesWhenVideoFinishLoad
 }
 

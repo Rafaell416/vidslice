@@ -7,7 +7,7 @@ import { addVideoUrl, addClipToClipList } from '../redux/actions'
 class Index extends Component {
   render () {
     return (
-      <Layout title="Vidslice">
+      <Layout title="Vidslice" >
         <div className="container">
           <UploadVideoCard
             {...this.props}
