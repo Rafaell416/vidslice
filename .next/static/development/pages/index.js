@@ -13213,7 +13213,7 @@ var addClipToClipList = function addClipToClipList(name, duration, startAt, endA
 
 /***/ }),
 
-/***/ 5:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
@@ -13238,5 +13238,5 @@ module.exports = dll_5d62d38be3592dca3a42;
 
 /***/ })
 
-},[[5,"static/runtime/webpack.js","styles"]]]));;
+},[[3,"static/runtime/webpack.js","styles"]]]));;
 //# sourceMappingURL=index.js.map

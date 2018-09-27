@@ -2,7 +2,9 @@
 
 const ClipCard = ({ name, duration }) => (
   <div className="container">
-    <div className="thumbnail-view"></div>
+    <div className="thumbnail-view">
+      <i className="material-icons icon">play_arrow</i>
+    </div>
     <div className="info-view">
       <div className="name-view">
         <span>{name}</span>
@@ -23,6 +25,7 @@ const ClipCard = ({ name, duration }) => (
           display: grid;
           grid-template-rows: 130px 70px;
           overflow: hidden;
+          cursor: pointer;
         }
 
         .container:hover {
@@ -31,7 +34,10 @@ const ClipCard = ({ name, duration }) => (
         }
 
         .thumbnail-view {
-          background: #2ecc71;
+          background: black;
+          display: grid;
+          align-items: center;
+          justify-content: center;
         }
 
         .info-view {
@@ -47,6 +53,10 @@ const ClipCard = ({ name, duration }) => (
         .options-icon-view {
           display: grid;
           justify-content: center;
+        }
+
+        .icon {
+          color: white;
         }
       `}
     </style>

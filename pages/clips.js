@@ -6,8 +6,10 @@ import ActionButton from '../components/ActionButton'
 import ClipCard from '../components/ClipCard'
 import InputRange from 'react-input-range'
 
+import { connect } from 'react-redux'
+import { addVideoUrl, addClipToClipList } from '../redux/actions'
 
-export default class clips extends Component {
+class cls extends Component {
   state = {
     name: '',
     value: {
@@ -26,13 +28,14 @@ export default class clips extends Component {
 
   render () {
     const { name, value } = this.state
+    const { clips, video: { url }} = this.props.state.vidslice
     return (
       <Layout title="Clips">
         <div className="container">
           <div className="section top-section">
             <div className="video-player-view">
               <VideoPlayer
-                url="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+                url={url}
                 muted
                 height="350px"
                 width="100%"
@@ -67,10 +70,12 @@ export default class clips extends Component {
           </div>
           <div className="section">
             <div className="clips-list-view">
-              <ClipCard
-                name="Clip"
-                duration="00:00:45"
-              />
+              {clips.map(clip => (
+                <ClipCard
+                  name="Clip"
+                  duration="00:00:45"
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -120,6 +125,9 @@ export default class clips extends Component {
               padding-top: 20px;
               padding-left: 10px;
               padding-right: 10px;
+              display: grid;
+              grid-template-columns: repeat(7, 1fr);
+              grid-gap: 20px;
             }
 
             .centered {
@@ -133,3 +141,15 @@ export default class clips extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  state
+})
+
+const mapDispatchToProps = {
+  addVideoUrl,
+  addClipToClipList
+}
+
+const Clips = connect(mapStateToProps, mapDispatchToProps)(cls)
+export default Clips
