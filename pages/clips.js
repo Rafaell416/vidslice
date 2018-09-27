@@ -9,11 +9,11 @@ import { secondsToFormatedTime } from '../lib'
 import { connect } from 'react-redux'
 import {
   addVideoUrl,
+  updateRangeValues,
   addClipToClipList,
   toggleSelectClipCard,
   deleteClipFromClipList,
   updateFullVideoDuration,
-  updateRangeValuesWhenIsDragged,
   updateDefaultRangeValuesWhenVideoFinishLoad
 } from '../redux/actions'
 
@@ -29,7 +29,7 @@ class cls extends Component {
     return false
   }
 
-  _handleRangeChange = (value) => this.props.updateRangeValuesWhenIsDragged(value)
+  _handleRangeChange = (value) => this.props.updateRangeValues(value)
 
   _onClickClipCard = (id, startAt, endAt) => {
     const { url } = this.props.state.vidslice.video
@@ -57,6 +57,9 @@ class cls extends Component {
       endAt,
       startAt
     })
+
+    this.setState({ name: '' })
+    this.props.updateRangeValues({ min: 0, max: 10 })
   }
 
   _handleDeleteCLip = (e, id) => {
@@ -202,7 +205,7 @@ const mapDispatchToProps = {
   toggleSelectClipCard,
   deleteClipFromClipList,
   updateFullVideoDuration,
-  updateRangeValuesWhenIsDragged,
+  updateRangeValues,
   updateDefaultRangeValuesWhenVideoFinishLoad
 }
 

@@ -30,7 +30,7 @@ export const updateDefaultRangeValuesWhenVideoFinishLoad = (rangeValues) => ({
   rangeValues
 })
 
-export const updateRangeValuesWhenIsDragged = (value) => ({
+export const updateRangeValues = (value) => ({
   type: 'UPDATE_RANGE_VALUES_WHEN_IS_DRAGGED',
   value
 })

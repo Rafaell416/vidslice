@@ -9,7 +9,6 @@ export default class VideoPlayer extends Component {
   componentDidMount(){
     const video = document.getElementById('video-player')
     video.addEventListener('loadedmetadata', () => {
-      console.log('loadedmetadata')
       const secondsRounded = Math.round(video.duration)
 
       const formatedStartAt = secondsToFormatedTime('0')
