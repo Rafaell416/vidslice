@@ -12289,6 +12289,14 @@ var vidslice = function vidslice() {
       });
       break;
 
+    case 'DELETE_CLIP_FROM_CLIP_LIST':
+      var clipId = action.id;
+      return _objectSpread({}, state, {
+        clips: state.clips.filter(function (clip) {
+          return clip.id !== clipId;
+        })
+      });
+
     case 'UPDATE_FULL_VIDEO_DURATION':
       return _objectSpread({}, state, {
         clips: state.clips.map(function (clip) {

@@ -1,6 +1,6 @@
 'use strict'
 
-const ClipCard = ({ id, name, startAt, endAt, onClick, selected, isFullVideo }) => (
+const ClipCard = ({ id, name, startAt, endAt, onClick, selected, isFullVideo, deleteClip }) => (
   <div
     onClick={() => onClick(id, startAt, endAt)}
     className={`container ${selected ? "container-hover" : '' }`}
@@ -16,8 +16,10 @@ const ClipCard = ({ id, name, startAt, endAt, onClick, selected, isFullVideo }) 
       </div>
       {isFullVideo ? null :
         <div className="options-icon-view">
-          <i className="material-icons">more_vert</i>
-        </div>}
+          <i className="material-icons" onClick={(e) => deleteClip(e, id)}>delete</i>
+          <i className="material-icons" onClick={() => console.log('edit')}>edit</i>
+        </div>
+      }
     </div>
     <style jsx>
       {`
@@ -57,7 +59,6 @@ const ClipCard = ({ id, name, startAt, endAt, onClick, selected, isFullVideo }) 
         .options-icon-view {
           display: grid;
           justify-content: center;
-          height: 30px;
         }
 
         .icon {

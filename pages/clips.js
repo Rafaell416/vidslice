@@ -11,6 +11,7 @@ import {
   addVideoUrl,
   addClipToClipList,
   toggleSelectClipCard,
+  deleteClipFromClipList,
   updateFullVideoDuration,
   updateRangeValuesWhenIsDragged,
   updateDefaultRangeValuesWhenVideoFinishLoad
@@ -56,6 +57,19 @@ class cls extends Component {
       endAt,
       startAt
     })
+  }
+
+  _handleDeleteCLip = (e, id) => {
+    e.stopPropagation()
+    const { url } = this.props.state.vidslice.video
+    const matchUrl = url.match(/https?.*?\.mp4/g)
+    const cleanUrl = matchUrl[0]
+
+    this.props.addVideoUrl(cleanUrl)
+    this.props.deleteClipFromClipList(id)
+
+    const video = document.getElementById('video-player')
+    video.load()
   }
 
   render () {
@@ -109,6 +123,7 @@ class cls extends Component {
                   key={clip.id}
                   {...clip}
                   onClick={this._onClickClipCard}
+                  deleteClip={this._handleDeleteCLip}
                 />
               ))}
             </div>
@@ -185,6 +200,7 @@ const mapDispatchToProps = {
   addVideoUrl,
   addClipToClipList,
   toggleSelectClipCard,
+  deleteClipFromClipList,
   updateFullVideoDuration,
   updateRangeValuesWhenIsDragged,
   updateDefaultRangeValuesWhenVideoFinishLoad

@@ -36,6 +36,12 @@ const vidslice = (state = {
         }]
       }
       break
+    case 'DELETE_CLIP_FROM_CLIP_LIST':
+      const clipId = action.id
+      return {
+        ...state,
+        clips: state.clips.filter(clip => clip.id !== clipId)
+      }
     case 'UPDATE_FULL_VIDEO_DURATION':
       return {
         ...state,
