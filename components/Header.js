@@ -5,19 +5,24 @@ import PropTypes from 'prop-types'
 const Header = ({ title, right, left }) => (
   <div>
     <header>
-      <div className="icon-view">
-        {left}
+      <div className="container">
+        <div className="icon-view">
+          {left}
+        </div>
+        <div className="title-view">
+          <span>{title}</span>
+        </div>
+        <div className="icon-view">
+          {right}
+        </div>
       </div>
-      <div className="title-view">
-        <span>{title}</span>
-      </div>
-      <div className="icon-view">
-        {right}
+      <div className="subheader">
+        <span>Experiment trimming your favourite videos</span>
       </div>
     </header>
     <style jsx>
       {`
-        header {
+        header .container {
           background: transparent;
           padding: 15px;
           text-align: center;
@@ -25,9 +30,20 @@ const Header = ({ title, right, left }) => (
           justify-content: space-between;
         }
 
+        .subheader {
+          display: grid;
+          align-items: center;
+          justify-content: center;
+        }
+
         header span {
           color: #5E616F;
           font-size: 30px;
+        }
+
+        .subheader span {
+          color: #5E616F;
+          font-size: 18px;
         }
 
         .icon-view {
