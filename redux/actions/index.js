@@ -15,6 +15,11 @@ export const deleteClipFromClipList = (id) => ({
   id
 })
 
+export const editClip = (clip) => ({
+  type: 'EDIT_CLIP',
+  clip
+})
+
 export const updateFullVideoDuration = (duration) => ({
   type: 'UPDATE_FULL_VIDEO_DURATION',
   duration

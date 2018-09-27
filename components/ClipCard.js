@@ -1,6 +1,6 @@
 'use strict'
 
-const ClipCard = ({ id, name, startAt, endAt, onClick, selected, isFullVideo, deleteClip }) => (
+const ClipCard = ({ id, name, startAt, endAt, onClick, selected, isFullVideo, deleteClip, editClip }) => (
   <div
     onClick={() => onClick(id, startAt, endAt)}
     className={`container ${selected ? "container-hover" : '' }`}
@@ -17,7 +17,7 @@ const ClipCard = ({ id, name, startAt, endAt, onClick, selected, isFullVideo, de
       {isFullVideo ? null :
         <div className="options-icon-view">
           <i className="material-icons" onClick={(e) => deleteClip(e, id)}>delete</i>
-          <i className="material-icons" onClick={() => console.log('edit')}>edit</i>
+          <i className="material-icons" onClick={(e) => editClip(e, {id, name, startAt, endAt})}>edit</i>
         </div>
       }
     </div>

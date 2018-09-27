@@ -712,7 +712,7 @@ var mapDispatchToProps = {
 /*!********************************!*\
   !*** ./redux/actions/index.js ***!
   \********************************/
-/*! exports provided: addVideoUrl, addClipToClipList, deleteClipFromClipList, updateFullVideoDuration, toggleSelectClipCard, updateDefaultRangeValuesWhenVideoFinishLoad, updateRangeValues, resetClipListToDefaultValues */
+/*! exports provided: addVideoUrl, addClipToClipList, deleteClipFromClipList, editClip, updateFullVideoDuration, toggleSelectClipCard, updateDefaultRangeValuesWhenVideoFinishLoad, updateRangeValues, resetClipListToDefaultValues */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -720,6 +720,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addVideoUrl", function() { return addVideoUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addClipToClipList", function() { return addClipToClipList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteClipFromClipList", function() { return deleteClipFromClipList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editClip", function() { return editClip; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateFullVideoDuration", function() { return updateFullVideoDuration; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleSelectClipCard", function() { return toggleSelectClipCard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateDefaultRangeValuesWhenVideoFinishLoad", function() { return updateDefaultRangeValuesWhenVideoFinishLoad; });
@@ -743,6 +744,12 @@ var deleteClipFromClipList = function deleteClipFromClipList(id) {
   return {
     type: 'DELETE_CLIP_FROM_CLIP_LIST',
     id: id
+  };
+};
+var editClip = function editClip(clip) {
+  return {
+    type: 'EDIT_CLIP',
+    clip: clip
   };
 };
 var updateFullVideoDuration = function updateFullVideoDuration(duration) {

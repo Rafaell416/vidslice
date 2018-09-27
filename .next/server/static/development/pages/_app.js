@@ -428,6 +428,18 @@ var vidslice = function vidslice() {
           return clip.id !== clipId;
         })
       });
+      break;
+
+    case 'EDIT_CLIP':
+      return _objectSpread({}, state, {
+        clips: state.clips.map(function (clip) {
+          return clip.id === action.clip.id ? _objectSpread({}, clip, {
+            name: action.clip.name,
+            startAt: action.clip.startAt,
+            endAt: action.clip.endAt
+          }) : clip;
+        })
+      });
 
     case 'UPDATE_FULL_VIDEO_DURATION':
       return _objectSpread({}, state, {

@@ -42,6 +42,21 @@ const vidslice = (state = {
         ...state,
         clips: state.clips.filter(clip => clip.id !== clipId)
       }
+      break
+    case 'EDIT_CLIP':
+      return {
+        ...state,
+        clips: state.clips.map(clip =>
+          (clip.id === action.clip.id)
+          ? {
+              ...clip,
+              name: action.clip.name,
+              startAt: action.clip.startAt,
+              endAt: action.clip.endAt
+            }
+          : clip
+        )
+      }
     case 'UPDATE_FULL_VIDEO_DURATION':
       return {
         ...state,

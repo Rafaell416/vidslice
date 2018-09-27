@@ -5,10 +5,11 @@ import InputField from '../components/InputField'
 import ActionButton from '../components/ActionButton'
 import ClipCard from '../components/ClipCard'
 import InputRange from 'react-input-range'
-import { secondsToFormatedTime } from '../lib'
+import { secondsToFormatedTime, formatedTimeToSeconds } from '../lib'
 import { connect } from 'react-redux'
 import Router from 'next/router'
 import {
+  editClip,
   addVideoUrl,
   updateRangeValues,
   addClipToClipList,
@@ -21,7 +22,13 @@ import {
 
 class cls extends Component {
   state = {
-    name: ''
+    isEditing: false,
+    name: '',
+    currentEditingClipId: '',
+    rangeValueWhenEditing: {
+      min: 0,
+      max: 0
+    }
   }
 
   _handleOnchangeInputValue = (e) => this.setState({ name: e.target.value })
@@ -31,7 +38,19 @@ class cls extends Component {
     return false
   }
 
-  _handleRangeChange = (value) => this.props.updateRangeValues(value)
+  _handleRangeChange = (value) => {
+    const { isEditing } = this.state
+    if (isEditing) {
+      this.setState({
+        rangeValueWhenEditing: {
+          min: value.min,
+          max: value.max
+        }
+      })
+    } else {
+      this.props.updateRangeValues(value)
+    }
+  }
 
   _onClickClipCard = (id, startAt, endAt) => {
     const { url } = this.props.state.vidslice.video
@@ -78,9 +97,45 @@ class cls extends Component {
 
   }
 
-  _handleEditClip = (e, id) => {
+  _handleStartEditingProcess = (e, clip) => {
     e.stopPropagation()
+    const { id, startAt, endAt, name } = clip
+    const startAtInSeconds = formatedTimeToSeconds(startAt)
+    const endAtInSeconds = formatedTimeToSeconds(endAt)
+    this.setState({
+      isEditing: true,
+      currentEditingClipId: id,
+      rangeValueWhenEditing: {
+        min: startAtInSeconds,
+        max: endAtInSeconds
+      },
+      name,
+    })
+  }
 
+  _editClipWithNewData = () => {
+    const { name, currentEditingClipId } = this.state
+    const { min, max } = this.state.rangeValueWhenEditing
+
+    const startAt = secondsToFormatedTime(min)
+    const endAt = secondsToFormatedTime(max)
+
+    this.props.editClip({
+      id: currentEditingClipId,
+      name,
+      startAt,
+      endAt
+    })
+
+    this.setState({
+      isEditing: false,
+      name: '',
+      currentEditingClipId: '',
+      rangeValueWhenEditing: {
+        min: '',
+        max: ''
+      }
+    })
   }
 
   _resetClipList = () => {
@@ -89,7 +144,7 @@ class cls extends Component {
   }
 
   render () {
-    const { name } = this.state
+    const { name, rangeValueWhenEditing, isEditing } = this.state
     const { clips, video: { url, defaultMin, defaultMax, value }} = this.props.state.vidslice
     return (
       <Layout
@@ -119,17 +174,17 @@ class cls extends Component {
                 <InputRange
                   maxValue={defaultMax}
                   minValue={defaultMin}
-                  value={value}
+                  value={isEditing ? rangeValueWhenEditing : value}
                   onChange={this._handleRangeChange}
                   ariaLabelledby="hello"
                 />
               </div>
               <div className="button-view centered">
                 <ActionButton
-                  text="Create clip"
+                  text={isEditing ? 'Edit clip' : 'Create clip'}
                   backgroundColor="#1abc9c"
                   textColor="white"
-                  onClick={this._createClip}
+                  onClick={isEditing ? this._editClipWithNewData : this._createClip}
                   disabled={this._checkIfInputIsFilled()}
                 />
               </div>
@@ -143,7 +198,7 @@ class cls extends Component {
                   {...clip}
                   onClick={this._onClickClipCard}
                   deleteClip={this._handleDeleteCLip}
-                  editClip={this._handleEditClip}
+                  editClip={this._handleStartEditingProcess}
                 />
               ))}
             </div>
@@ -217,6 +272,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
+  editClip,
   addVideoUrl,
   updateRangeValues,
   addClipToClipList,
