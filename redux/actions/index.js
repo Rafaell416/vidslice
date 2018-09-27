@@ -14,3 +14,8 @@ export const updateFullVideoDuration = (duration) => ({
   type: 'UPDATE_FULL_VIDEO_DURATION',
   duration
 })
+
+export const toggleSelectClipCard = (id) => ({
+  type: 'TOGGLE_SELECTED_CLIP_CARD',
+  id,
+})

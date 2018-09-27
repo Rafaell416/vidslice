@@ -7,7 +7,7 @@ import ClipCard from '../components/ClipCard'
 import InputRange from 'react-input-range'
 
 import { connect } from 'react-redux'
-import { updateFullVideoDuration } from '../redux/actions'
+import { updateFullVideoDuration, toggleSelectClipCard } from '../redux/actions'
 
 class cls extends Component {
   state = {
@@ -25,6 +25,8 @@ class cls extends Component {
   }
 
   _handleRangeChange = (value) => this.setState({ value })
+
+  _onClickClipCard = (id) => this.props.toggleSelectClipCard(id)
 
   render () {
     const { name, value } = this.state
@@ -74,9 +76,8 @@ class cls extends Component {
               {clips.map(clip => (
                 <ClipCard
                   key={clip.id}
-                  name={clip.name}
-                  startAt={clip.startAt}
-                  endAt={clip.endAt}
+                  {...clip}
+                  onClick={this._onClickClipCard}
                 />
               ))}
             </div>
@@ -150,7 +151,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  updateFullVideoDuration
+  updateFullVideoDuration,
+  toggleSelectClipCard
 }
 
 const Clips = connect(mapStateToProps, mapDispatchToProps)(cls)

@@ -1,7 +1,10 @@
 'use strict'
 
-const ClipCard = ({ name, startAt, endAt }) => (
-  <div className="container">
+const ClipCard = ({ id, name, startAt, endAt, onClick, selected }) => (
+  <div
+    onClick={() => onClick(id)}
+    className={`container ${selected ? "container-hover" : '' }`}
+  >
     <div className="thumbnail-view">
       <i className="material-icons icon">play_arrow</i>
     </div>
@@ -18,9 +21,8 @@ const ClipCard = ({ name, startAt, endAt }) => (
     <style jsx>
       {`
         .container {
-          background-color: white;
           border-radius: 8px;
-          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+          box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
           height: 200px;
           width: 150px;
           display: grid;
@@ -29,14 +31,9 @@ const ClipCard = ({ name, startAt, endAt }) => (
           cursor: pointer;
         }
 
-        .container:hover {
-          box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-          transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-        }
-
-        .container:active {
+        .container-hover {
           box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-          transition: all 0.1s;
+          transition: all 0.3s cubic-bezier(.25,.8,.25,1);
         }
 
         .thumbnail-view {

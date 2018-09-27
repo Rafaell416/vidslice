@@ -8,7 +8,7 @@ const vidslice = (state = { video: { url: '' }, clips: [] }, action) => {
       return { ...state, video: { url: action.url } }
       break
     case 'ADD_CLIP_TO_CLIP_LIST':
-      const { name, startAt, endAt, isFullVideo } = action.clip
+      const { name, startAt, endAt, isFullVideo, selected } = action.clip
       return {
         ...state,
         clips: [
@@ -17,7 +17,8 @@ const vidslice = (state = { video: { url: '' }, clips: [] }, action) => {
           name,
           startAt,
           endAt,
-          isFullVideo
+          isFullVideo,
+          selected
         }]
       }
       break
@@ -35,6 +36,21 @@ const vidslice = (state = { video: { url: '' }, clips: [] }, action) => {
         )
       }
       break
+    case 'TOGGLE_SELECTED_CLIP_CARD':
+      return {
+        ...state,
+        clips: state.clips.map(clip =>
+          (clip.selected === true)
+          ? { ...clip, selected: false }
+          : (clip.selected === false && clip.id === action.id)
+            ? {
+                ...clip,
+                selected: true
+              }
+            : clip
+        )
+      }
+    break
     default:
       return state
   }

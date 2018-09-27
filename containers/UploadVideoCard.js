@@ -22,7 +22,8 @@ export default class UploadVideoCard extends Component {
       name: 'Full Video',
       startAt: '',
       endAt: '',
-      isFullVideo: true
+      isFullVideo: true,
+      selected: false
     })
     Router.push('/clips')
   }

@@ -12269,14 +12269,16 @@ var vidslice = function vidslice() {
           name = _action$clip.name,
           startAt = _action$clip.startAt,
           endAt = _action$clip.endAt,
-          isFullVideo = _action$clip.isFullVideo;
+          isFullVideo = _action$clip.isFullVideo,
+          selected = _action$clip.selected;
       return _objectSpread({}, state, {
         clips: _toConsumableArray(state.clips).concat([{
           id: Object(uuid__WEBPACK_IMPORTED_MODULE_0__["v4"])(),
           name: name,
           startAt: startAt,
           endAt: endAt,
-          isFullVideo: isFullVideo
+          isFullVideo: isFullVideo,
+          selected: selected
         }])
       });
       break;
@@ -12287,6 +12289,18 @@ var vidslice = function vidslice() {
           return clip.isFullVideo === true ? _objectSpread({}, clip, {
             startAt: action.duration.startAt,
             endAt: action.duration.endAt
+          }) : clip;
+        })
+      });
+      break;
+
+    case 'TOGGLE_SELECTED_CLIP_CARD':
+      return _objectSpread({}, state, {
+        clips: state.clips.map(function (clip) {
+          return clip.selected === true ? _objectSpread({}, clip, {
+            selected: false
+          }) : clip.selected === false && clip.id === action.id ? _objectSpread({}, clip, {
+            selected: true
           }) : clip;
         })
       });
