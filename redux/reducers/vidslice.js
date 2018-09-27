@@ -2,10 +2,24 @@
 
 import { v4 } from 'uuid'
 
-const vidslice = (state = { video: { url: '' }, clips: [] }, action) => {
+const vidslice = (state = {
+  video: {
+    url: '',
+    defaultMin: 0,
+    defaultMax: 0,
+    value: { min: 0, max: 0 }
+  },
+  clips: []
+}, action) => {
   switch (action.type) {
     case 'ADD_VIDEO_URL':
-      return { ...state, video: { url: action.url } }
+      return {
+        ...state,
+        video: {
+          ...state.video,
+          url: action.url
+        }
+      }
       break
     case 'ADD_CLIP_TO_CLIP_LIST':
       const { name, startAt, endAt, isFullVideo, selected } = action.clip
@@ -17,8 +31,8 @@ const vidslice = (state = { video: { url: '' }, clips: [] }, action) => {
           name,
           startAt,
           endAt,
-          isFullVideo,
-          selected
+          isFullVideo: isFullVideo || false,
+          selected: selected || false,
         }]
       }
       break
@@ -51,6 +65,27 @@ const vidslice = (state = { video: { url: '' }, clips: [] }, action) => {
         )
       }
     break
+    case 'UPDATE_DEFAULT_RANGE_VALUES':
+      const { defaultMin, defaultMax, value} = action.rangeValues
+      return {
+        ...state,
+        video: {
+          ...state.video,
+          defaultMax,
+          defaultMin,
+          value
+        }
+      }
+      break
+    case 'UPDATE_RANGE_VALUES_WHEN_IS_DRAGGED':
+      return {
+        ...state,
+        video: {
+          ...state.video,
+          value: action.value
+        }
+      }
+      break
     default:
       return state
   }

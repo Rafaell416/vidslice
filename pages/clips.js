@@ -5,20 +5,20 @@ import InputField from '../components/InputField'
 import ActionButton from '../components/ActionButton'
 import ClipCard from '../components/ClipCard'
 import InputRange from 'react-input-range'
-
+import { secondsToFormatedTime } from '../lib'
 import { connect } from 'react-redux'
 import {
   addVideoUrl,
+  addClipToClipList,
   toggleSelectClipCard,
   updateFullVideoDuration,
+  updateRangeValuesWhenIsDragged,
+  updateDefaultRangeValuesWhenVideoFinishLoad
 } from '../redux/actions'
 
 class cls extends Component {
   state = {
-    name: '',
-    value: {
-      min: 2, max: 10
-    }
+    name: ''
   }
 
   _handleOnchangeInputValue = (e) => this.setState({ name: e.target.value })
@@ -28,7 +28,7 @@ class cls extends Component {
     return false
   }
 
-  _handleRangeChange = (value) => this.setState({ value })
+  _handleRangeChange = (value) => this.props.updateRangeValuesWhenIsDragged(value)
 
   _onClickClipCard = (id, startAt, endAt) => {
     const { url } = this.props.state.vidslice.video
@@ -42,9 +42,23 @@ class cls extends Component {
     video.play()
   }
 
+  _createClip = () => {
+    const { name } = this.state
+    const { min, max } = this.props.state.vidslice.video.value
+
+    const startAt = secondsToFormatedTime(min)
+    const endAt = secondsToFormatedTime(max)
+
+    this.props.addClipToClipList({
+      name,
+      endAt,
+      startAt
+    })
+  }
+
   render () {
-    const { name, value } = this.state
-    const { clips, video: { url }} = this.props.state.vidslice
+    const { name } = this.state
+    const { clips, video: { url, defaultMin, defaultMax, value }} = this.props.state.vidslice
     return (
       <Layout title="Clips">
         <div className="container">
@@ -55,7 +69,7 @@ class cls extends Component {
                 muted
                 height="350px"
                 width="100%"
-                updateFullVideoDuration={this.props.updateFullVideoDuration}
+                { ...this.props }
               />
             </div>
             <div className="form-view">
@@ -68,10 +82,11 @@ class cls extends Component {
               </div>
               <div className="slider-view">
                 <InputRange
-                  maxValue={20}
-                  minValue={0}
+                  maxValue={defaultMax}
+                  minValue={defaultMin}
                   value={value}
                   onChange={this._handleRangeChange}
+                  ariaLabelledby="hello"
                 />
               </div>
               <div className="button-view centered">
@@ -79,7 +94,7 @@ class cls extends Component {
                   text="Create clip"
                   backgroundColor="#1abc9c"
                   textColor="white"
-                  onClick={() => console.log('pressed button')}
+                  onClick={this._createClip}
                   disabled={this._checkIfInputIsFilled()}
                 />
               </div>
@@ -166,8 +181,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   addVideoUrl,
+  addClipToClipList,
   toggleSelectClipCard,
   updateFullVideoDuration,
+  updateRangeValuesWhenIsDragged,
+  updateDefaultRangeValuesWhenVideoFinishLoad
 }
 
 const Clips = connect(mapStateToProps, mapDispatchToProps)(cls)

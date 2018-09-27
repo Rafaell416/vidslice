@@ -9,12 +9,21 @@ export default class VideoPlayer extends Component {
   componentDidMount(){
     const video = document.getElementById('video-player')
     video.addEventListener('loadedmetadata', () => {
+      console.log('loadedmetadata')
       const secondsRounded = Math.round(video.duration)
 
       const formatedStartAt = secondsToFormatedTime('0')
       const formatedEndAt = secondsToFormatedTime(secondsRounded)
 
       this.props.updateFullVideoDuration({ startAt: formatedStartAt, endAt: formatedEndAt })
+      this.props.updateDefaultRangeValuesWhenVideoFinishLoad({
+        defaultMin: 0,
+        defaultMax: secondsRounded,
+        value: {
+          min: 0,
+          max: 10
+        }
+      })
     })
   }
 

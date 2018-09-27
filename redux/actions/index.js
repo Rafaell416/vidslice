@@ -19,3 +19,13 @@ export const toggleSelectClipCard = (id) => ({
   type: 'TOGGLE_SELECTED_CLIP_CARD',
   id,
 })
+
+export const updateDefaultRangeValuesWhenVideoFinishLoad = (rangeValues) => ({
+  type: 'UPDATE_DEFAULT_RANGE_VALUES',
+  rangeValues
+})
+
+export const updateRangeValuesWhenIsDragged = (value) => ({
+  type: 'UPDATE_RANGE_VALUES_WHEN_IS_DRAGGED',
+  value
+})

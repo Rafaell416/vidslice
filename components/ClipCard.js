@@ -1,6 +1,6 @@
 'use strict'
 
-const ClipCard = ({ id, name, startAt, endAt, onClick, selected }) => (
+const ClipCard = ({ id, name, startAt, endAt, onClick, selected, isFullVideo }) => (
   <div
     onClick={() => onClick(id, startAt, endAt)}
     className={`container ${selected ? "container-hover" : '' }`}
@@ -14,9 +14,10 @@ const ClipCard = ({ id, name, startAt, endAt, onClick, selected }) => (
         <span className="duration-span">start: {startAt}</span>
         <span className="duration-span">end: {endAt}</span>
       </div>
-      <div className="options-icon-view">
-        <i className="material-icons">more_vert</i>
-      </div>
+      {isFullVideo ? null :
+        <div className="options-icon-view">
+          <i className="material-icons">more_vert</i>
+        </div>}
     </div>
     <style jsx>
       {`

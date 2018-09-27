@@ -13192,7 +13192,7 @@ var mapDispatchToProps = {
 /*!********************************!*\
   !*** ./redux/actions/index.js ***!
   \********************************/
-/*! exports provided: addVideoUrl, addClipToClipList, updateFullVideoDuration, toggleSelectClipCard */
+/*! exports provided: addVideoUrl, addClipToClipList, updateFullVideoDuration, toggleSelectClipCard, updateDefaultRangeValuesWhenVideoFinishLoad, updateRangeValuesWhenIsDragged */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13201,6 +13201,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addClipToClipList", function() { return addClipToClipList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateFullVideoDuration", function() { return updateFullVideoDuration; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleSelectClipCard", function() { return toggleSelectClipCard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateDefaultRangeValuesWhenVideoFinishLoad", function() { return updateDefaultRangeValuesWhenVideoFinishLoad; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateRangeValuesWhenIsDragged", function() { return updateRangeValuesWhenIsDragged; });
 
 
 var addVideoUrl = function addVideoUrl(url) {
@@ -13225,6 +13227,18 @@ var toggleSelectClipCard = function toggleSelectClipCard(id) {
   return {
     type: 'TOGGLE_SELECTED_CLIP_CARD',
     id: id
+  };
+};
+var updateDefaultRangeValuesWhenVideoFinishLoad = function updateDefaultRangeValuesWhenVideoFinishLoad(rangeValues) {
+  return {
+    type: 'UPDATE_DEFAULT_RANGE_VALUES',
+    rangeValues: rangeValues
+  };
+};
+var updateRangeValuesWhenIsDragged = function updateRangeValuesWhenIsDragged(value) {
+  return {
+    type: 'UPDATE_RANGE_VALUES_WHEN_IS_DRAGGED',
+    value: value
   };
 };
 

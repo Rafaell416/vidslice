@@ -381,7 +381,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var vidslice = function vidslice() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     video: {
-      url: ''
+      url: '',
+      defaultMin: 0,
+      defaultMax: 0,
+      value: {
+        min: 0,
+        max: 0
+      }
     },
     clips: []
   };
@@ -390,9 +396,9 @@ var vidslice = function vidslice() {
   switch (action.type) {
     case 'ADD_VIDEO_URL':
       return _objectSpread({}, state, {
-        video: {
+        video: _objectSpread({}, state.video, {
           url: action.url
-        }
+        })
       });
       break;
 
@@ -409,8 +415,8 @@ var vidslice = function vidslice() {
           name: name,
           startAt: startAt,
           endAt: endAt,
-          isFullVideo: isFullVideo,
-          selected: selected
+          isFullVideo: isFullVideo || false,
+          selected: selected || false
         }])
       });
       break;
@@ -434,6 +440,28 @@ var vidslice = function vidslice() {
           }) : clip.selected === false && clip.id === action.id ? _objectSpread({}, clip, {
             selected: true
           }) : clip;
+        })
+      });
+      break;
+
+    case 'UPDATE_DEFAULT_RANGE_VALUES':
+      var _action$rangeValues = action.rangeValues,
+          defaultMin = _action$rangeValues.defaultMin,
+          defaultMax = _action$rangeValues.defaultMax,
+          value = _action$rangeValues.value;
+      return _objectSpread({}, state, {
+        video: _objectSpread({}, state.video, {
+          defaultMax: defaultMax,
+          defaultMin: defaultMin,
+          value: value
+        })
+      });
+      break;
+
+    case 'UPDATE_RANGE_VALUES_WHEN_IS_DRAGGED':
+      return _objectSpread({}, state, {
+        video: _objectSpread({}, state.video, {
+          value: action.value
         })
       });
       break;
