@@ -34,7 +34,7 @@ export default class UploadVideoCard extends Component {
       <div className="container">
         <div className="form">
           <InputField
-            placeholder="Enter your video url"
+            placeholder="Enter your video url: example.mp4"
             value={url}
             onChange={this._handleOnchangeInputValue}
           />
