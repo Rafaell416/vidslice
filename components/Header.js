@@ -2,7 +2,7 @@
 
 import PropTypes from 'prop-types'
 
-const Header = ({ title, right, left }) => (
+const Header = ({ title, right, left, subheader }) => (
   <div>
     <header>
       <div className="container">
@@ -17,7 +17,7 @@ const Header = ({ title, right, left }) => (
         </div>
       </div>
       <div className="subheader">
-        <span>Experiment trimming your favourite videos</span>
+        <span>{subheader}</span>
       </div>
     </header>
     <style jsx>

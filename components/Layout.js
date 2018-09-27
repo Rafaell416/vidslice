@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import react_input_range_styles from 'react-input-range/lib/css/index.css'
 
 
-const Layout = ({ children, title, right, left }) => (
+const Layout = ({ children, title, right, left, subheader }) => (
   <div>
     <Head>
       <title>{title}</title>
@@ -18,6 +18,7 @@ const Layout = ({ children, title, right, left }) => (
       title={title}
       right={right}
       left={left}
+      subheader={subheader}
     />
     {children}
     <style jsx global>
