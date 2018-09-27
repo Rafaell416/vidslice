@@ -32,7 +32,9 @@ class cls extends Component {
 
   _onClickClipCard = (id, startAt, endAt) => {
     const { url } = this.props.state.vidslice.video
-    const urlWithMediaFragments = `${url}#t=${startAt}, ${endAt}`
+    const matchUrl = url.match(/https?.*?\.mp4/g)
+    const cleanUrl = matchUrl[0]
+    const urlWithMediaFragments = `${cleanUrl}#t=${startAt},${endAt}`
 
     this.props.toggleSelectClipCard(id)
     this.props.addVideoUrl(urlWithMediaFragments)
