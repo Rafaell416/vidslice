@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000
 const handler = routes.getRequestHandler(app)
 
 
-const {createServer} = require('http')
+const { createServer } = require('http')
 app.prepare().then(() => {
   createServer(handler).listen(PORT)
 })

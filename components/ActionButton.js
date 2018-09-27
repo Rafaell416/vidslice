@@ -35,6 +35,7 @@ const ActionButton = ({ backgroundColor, text, textColor, onClick, disabled }) =
           font-weight: bold;
           border-radius: 20px;
           outline: 0;
+          border: 2px solid transparent;
           box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         }
 
@@ -53,7 +54,8 @@ ActionButton.propTypes = {
   text: PropTypes.string.isRequired,
   textColor: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  type: PropTypes.string
 }
 
 export default ActionButton

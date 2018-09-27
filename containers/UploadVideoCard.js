@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import InputField from '../components/InputField'
 import ActionButton from '../components/ActionButton'
+import Router from 'next/router'
 
 export default class UploadVideoCard extends Component {
   state = {
@@ -10,9 +11,21 @@ export default class UploadVideoCard extends Component {
   _handleOnchangeInputValue = (e) => this.setState({ url: e.target.value })
 
   _checkIfInputIsFilled = () => {
-    const { url } = this.state
-    if (!url) return true
+    if (!this.state.url) return true
     return false
+  }
+
+  _handleNavigation = () => {
+    const { url } = this.state
+    this.props.addVideoUrl(url)
+    this.props.addClipToClipList({
+      name: 'Full Video',
+      startAt: '',
+      endAt: '',
+      isFullVideo: true,
+      selected: false
+    })
+    Router.push('/clips')
   }
 
   render () {
@@ -29,7 +42,7 @@ export default class UploadVideoCard extends Component {
             text="Next"
             backgroundColor="#1abc9c"
             textColor="white"
-            onClick={() => console.log('preesed')}
+            onClick={this._handleNavigation}
             disabled={this._checkIfInputIsFilled()}
           />
         </div>

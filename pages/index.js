@@ -1,24 +1,28 @@
 import { Component } from 'react'
 import Layout from '../components/Layout'
 import UploadVideoCard from '../containers/UploadVideoCard'
+import { connect } from 'react-redux'
+import { addVideoUrl, addClipToClipList } from '../redux/actions'
 
-export default class extends Component {
+class Index extends Component {
   render () {
     return (
-      <Layout title="Vidslice">
+      <Layout
+        title="Vidslice"
+        subheader="Experiment trimming your favourite videos"
+      >
         <div className="container">
-          <UploadVideoCard />
+          <UploadVideoCard
+            {...this.props}
+          />
         </div>
         <style jsx>
           {`
             .container {
               background-color: transparent;
-              display: flex;
-              flex: 1;
+              display: grid;
+              align-items: center;
               justify-content: center;
-              position: absolute;
-              height: 100%;
-              width: 100%;
             }
           `}
         </style>
@@ -26,3 +30,14 @@ export default class extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  state
+})
+
+const mapDispatchToProps = {
+  addVideoUrl,
+  addClipToClipList
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index)
