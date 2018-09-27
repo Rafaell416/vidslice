@@ -2,7 +2,7 @@
 
 const ClipCard = ({ id, name, startAt, endAt, onClick, selected }) => (
   <div
-    onClick={() => onClick(id)}
+    onClick={() => onClick(id, startAt, endAt)}
     className={`container ${selected ? "container-hover" : '' }`}
   >
     <div className="thumbnail-view">

@@ -7,7 +7,11 @@ import ClipCard from '../components/ClipCard'
 import InputRange from 'react-input-range'
 
 import { connect } from 'react-redux'
-import { updateFullVideoDuration, toggleSelectClipCard } from '../redux/actions'
+import {
+  addVideoUrl,
+  toggleSelectClipCard,
+  updateFullVideoDuration,
+} from '../redux/actions'
 
 class cls extends Component {
   state = {
@@ -26,7 +30,17 @@ class cls extends Component {
 
   _handleRangeChange = (value) => this.setState({ value })
 
-  _onClickClipCard = (id) => this.props.toggleSelectClipCard(id)
+  _onClickClipCard = (id, startAt, endAt) => {
+    const { url } = this.props.state.vidslice.video
+    const urlWithMediaFragments = `${url}#t=${startAt}, ${endAt}`
+
+    this.props.toggleSelectClipCard(id)
+    this.props.addVideoUrl(urlWithMediaFragments)
+
+    const video = document.getElementById('video-player')
+    video.load()
+    video.play()
+  }
 
   render () {
     const { name, value } = this.state
@@ -151,8 +165,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
+  addVideoUrl,
+  toggleSelectClipCard,
   updateFullVideoDuration,
-  toggleSelectClipCard
 }
 
 const Clips = connect(mapStateToProps, mapDispatchToProps)(cls)
