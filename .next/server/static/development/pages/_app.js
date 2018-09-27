@@ -397,17 +397,30 @@ var vidslice = function vidslice() {
       break;
 
     case 'ADD_CLIP_TO_CLIP_LIST':
-      var name = action.name,
-          duration = action.duration,
-          startAt = action.startAt,
-          endAt = action.endAt;
+      var _action$clip = action.clip,
+          name = _action$clip.name,
+          startAt = _action$clip.startAt,
+          endAt = _action$clip.endAt,
+          isFullVideo = _action$clip.isFullVideo;
       return _objectSpread({}, state, {
         clips: _toConsumableArray(state.clips).concat([{
+          id: Object(uuid__WEBPACK_IMPORTED_MODULE_0__["v4"])(),
           name: name,
-          duration: duration,
           startAt: startAt,
-          endAt: endAt
+          endAt: endAt,
+          isFullVideo: isFullVideo
         }])
+      });
+      break;
+
+    case 'UPDATE_FULL_VIDEO_DURATION':
+      return _objectSpread({}, state, {
+        clips: state.clips.map(function (clip) {
+          return clip.isFullVideo === true ? _objectSpread({}, clip, {
+            startAt: action.duration.startAt,
+            endAt: action.duration.endAt
+          }) : clip;
+        })
       });
       break;
 

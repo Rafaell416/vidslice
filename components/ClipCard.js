@@ -1,14 +1,15 @@
 'use strict'
 
-const ClipCard = ({ name, duration }) => (
+const ClipCard = ({ name, startAt, endAt }) => (
   <div className="container">
     <div className="thumbnail-view">
       <i className="material-icons icon">play_arrow</i>
     </div>
     <div className="info-view">
       <div className="name-view">
-        <span>{name}</span>
-        <span>{duration}</span>
+        <span className="title">{name}</span>
+        <span className="duration-span">start: {startAt}</span>
+        <span className="duration-span">end: {endAt}</span>
       </div>
       <div className="options-icon-view">
         <i className="material-icons">more_vert</i>
@@ -33,6 +34,11 @@ const ClipCard = ({ name, duration }) => (
           transition: all 0.3s cubic-bezier(.25,.8,.25,1);
         }
 
+        .container:active {
+          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+          transition: all 0.1s;
+        }
+
         .thumbnail-view {
           background: black;
           display: grid;
@@ -53,10 +59,20 @@ const ClipCard = ({ name, duration }) => (
         .options-icon-view {
           display: grid;
           justify-content: center;
+          height: 30px;
         }
 
         .icon {
           color: white;
+        }
+
+        .container .title {
+          font-weight: bold;
+        }
+
+        .container .duration-span {
+          font-size: 12px;
+          color: #7f8c8d;
         }
       `}
     </style>

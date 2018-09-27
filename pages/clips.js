@@ -1,13 +1,13 @@
 import { Component } from 'react'
 import Layout from '../components/Layout'
-import VideoPlayer from '../components/VideoPlayer'
+import VideoPlayer from '../containers/VideoPlayer'
 import InputField from '../components/InputField'
 import ActionButton from '../components/ActionButton'
 import ClipCard from '../components/ClipCard'
 import InputRange from 'react-input-range'
 
 import { connect } from 'react-redux'
-import { addVideoUrl, addClipToClipList } from '../redux/actions'
+import { updateFullVideoDuration } from '../redux/actions'
 
 class cls extends Component {
   state = {
@@ -39,6 +39,7 @@ class cls extends Component {
                 muted
                 height="350px"
                 width="100%"
+                updateFullVideoDuration={this.props.updateFullVideoDuration}
               />
             </div>
             <div className="form-view">
@@ -72,8 +73,10 @@ class cls extends Component {
             <div className="clips-list-view">
               {clips.map(clip => (
                 <ClipCard
-                  name="Clip"
-                  duration="00:00:45"
+                  key={clip.id}
+                  name={clip.name}
+                  startAt={clip.startAt}
+                  endAt={clip.endAt}
                 />
               ))}
             </div>
@@ -147,8 +150,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  addVideoUrl,
-  addClipToClipList
+  updateFullVideoDuration
 }
 
 const Clips = connect(mapStateToProps, mapDispatchToProps)(cls)

@@ -5,10 +5,12 @@ export const addVideoUrl = (url) => ({
   url
 })
 
-export const addClipToClipList = (name, duration, startAt, endAt) => ({
+export const addClipToClipList = (clip) => ({
   type: 'ADD_CLIP_TO_CLIP_LIST',
-  name,
-  duration,
-  startAt,
-  endAt
+  clip
+})
+
+export const updateFullVideoDuration = (duration) => ({
+  type: 'UPDATE_FULL_VIDEO_DURATION',
+  duration
 })

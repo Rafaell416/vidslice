@@ -18,7 +18,12 @@ export default class UploadVideoCard extends Component {
   _handleNavigation = () => {
     const { url } = this.state
     this.props.addVideoUrl(url)
-    this.props.addClipToClipList('Full Video', '00:00:52', '6', '20')
+    this.props.addClipToClipList({
+      name: 'Full Video',
+      startAt: '',
+      endAt: '',
+      isFullVideo: true
+    })
     Router.push('/clips')
   }
 
