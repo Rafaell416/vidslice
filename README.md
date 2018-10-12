@@ -6,7 +6,7 @@ Vidslice is a simple app that allows you to create clips from existing videos yo
 
 ## Test the app
 
-You can play with the app just by clicking [here](https://vidslice-mgrkozonmx.now.sh)
+You can play with the app just by clicking [here](https://vidslice-xrmhtnpnpx.now.sh)
 
 ## For devs
 
